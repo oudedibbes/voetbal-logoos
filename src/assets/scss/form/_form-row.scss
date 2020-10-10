@@ -1,0 +1,67 @@
+.form-item-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0 0;
+  position: relative;
+
+  @media #{$small-up} {
+    flex-wrap: nowrap;
+  }
+
+  label {
+    margin: 0 0 10px 0;
+  }
+
+  label,
+  input[type='text'],
+  input[type='tel'],
+  textarea,
+  select,
+  button {
+
+
+    @media #{$small-up} {
+
+    }
+
+    > sup {
+      line-height: 1;
+    }
+  }
+
+  .form-item {
+    flex: 1 1 100%;
+    position: relative;
+    padding: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @media #{$small-up} {
+      margin-right: 20px;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &.form-text {
+    flex-direction: column;
+  }
+
+}
+
+#prevclub {
+  &.form-item-row {
+    .form-item:first-child {
+      flex: 1 0 50%;
+    }
+  }
+}

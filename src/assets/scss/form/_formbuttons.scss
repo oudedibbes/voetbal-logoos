@@ -1,0 +1,49 @@
+button {
+  border: 0;
+  border-radius: 4px;
+  display: flex;
+  font-family: $font-family-text;
+  border: solid 1px $--main-bond-color;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.22s cubic-bezier(0.345, 0, 0.25, 1) 0s;
+
+  span {
+    text-transform: uppercase;
+
+    @include color(color, --btn-color, $theme-dark-text-color);
+
+    padding: 10px 15px 6px 15px;
+  }
+
+  &:hover {
+    transition: all 0.33s cubic-bezier(0.345, 0, 0.25, 1) 0s;
+
+    span {
+      @include color(color, --btn-color, $theme-light-text-color);
+
+      transition: all 0.33s cubic-bezier(0.345, 0, 0.25, 1) 0s;
+    }
+    @include color(background-color, --background-color, $theme-light-text-color);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border-color: #a2a3a0;
+    background-color: #a2a3a0;
+
+    span {
+      color: #f8f8f8;
+    }
+
+    &:hover {
+      border-color: #a2a3a0;
+      background-color: #a2a3a0;
+    }
+  }
+
+}

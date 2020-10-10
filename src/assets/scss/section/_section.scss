@@ -1,0 +1,23 @@
+.section-row {
+  display: flex;
+}
+
+.section {
+  padding: 20px 20px;
+  margin-bottom: 20px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.site-content {
+  .site-container {
+    width: 100%;
+    padding: 1em;
+  }
+
+  .divisie {
+    padding: 0 0;
+  }
+}

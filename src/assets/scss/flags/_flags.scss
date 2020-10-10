@@ -1,0 +1,44 @@
+.flags{
+  &:before{
+    background-repeat: no-repeat;
+    background-size: 66%;
+    background-position: center center;
+  }
+
+  &.az:before{
+    background-image: url('/assets/img/svg/flags/az.svg');
+  }
+  &.dk:before{
+    background-image: url('/assets/img/svg/flags/dk.svg');
+  }
+  &.de:before{
+    background-image: url('/assets/img/svg/flags/de.svg');
+  }
+  &.gb:before{
+    background-image: url('/assets/img/svg/flags/gb.svg');
+  }
+  &.hu:before{
+    background-image: url('/assets/img/svg/flags/hu.svg');
+  }
+  &.ie:before{
+    background-image: url('/assets/img/svg/flags/ie.svg');
+  }
+  &.it:before{
+    background-image: url('/assets/img/svg/flags/it.svg');
+  }
+  &.nl:before{
+    background-image: url('/assets/img/svg/flags/nl.svg');
+  }
+  &.ro:before{
+    background-image: url('/assets/img/svg/flags/ro.svg');
+  }
+  &.ru:before{
+    background-image: url('/assets/img/svg/flags/ru.svg');
+  }
+  &.gb-sct:before{
+    background-image: url('/assets/img/svg/flags/gb-sct.svg');
+  }
+  &.es:before{
+    background-image: url('/assets/img/svg/flags/es.svg');
+  }
+}

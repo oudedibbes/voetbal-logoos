@@ -1,0 +1,29 @@
+nav {
+  ul, ol {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+
+    li {
+      padding: 0;
+
+      a {
+        display: block;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: $--main-privacy-color;
+
+
+
+        @media #{$small-up} {
+
+        }
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}

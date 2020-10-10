@@ -1,0 +1,59 @@
+.form-item {
+  label {
+    margin: 0 0 5px 0;
+    display: inline-block;
+    word-wrap: break-word;
+  }
+
+  input[type='text'],
+  input[type='tel'] {
+    background-color: rgba(248, 248, 248, 1);
+    border: 1px solid #a2a3a0;
+    color: rgba(51, 51, 51, 1);
+    padding: 11px 15px 10px 15px;
+    margin: 0 0;
+    width: 100%;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    font-family: $font-family-text;
+
+    &:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 1);
+      transition: all 0.33s cubic-bezier(0.345, 0, 0.25, 1) 0s;
+      border: 1px solid #333;
+    }
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  &.form-item-hint {
+    input[type='text'],
+    input[type='tel'] {
+      + .hint-item {
+        display: none;
+        transition: all 0.22s cubic-bezier(0.345, 0, 0.25, 1) 0s;
+      }
+
+      &:focus {
+        padding: 14px 15px 7px 15px;
+        transition: all 0.22s cubic-bezier(0.345, 0, 0.25, 1) 0s;
+      }
+
+      &:focus + .hint-item {
+        display: block;
+        position: absolute;
+        top: 32px;
+        left: 15px;
+        color: rgb(153, 153, 136);
+
+
+
+        transition: all 0.22s cubic-bezier(0.345, 0, 0.25, 1) 0s;
+      }
+
+
+    }
+  }
+}

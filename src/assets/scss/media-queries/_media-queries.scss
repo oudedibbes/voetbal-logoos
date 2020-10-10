@@ -1,0 +1,64 @@
+$screen-xsmall-min: 448px;
+$screen-xsmall-max: $screen-xsmall-min - 1;
+$screen-small-min: 768px;
+$screen-small-max: $screen-small-min - 1;
+$screen-medium-min: 1024px;
+$screen-medium-max: $screen-medium-min - 1;
+$screen-large-min: 1200px;
+$screen-large-max: $screen-large-min - 1;
+$screen-xlarge-min: 1600px;
+$screen-xlarge-max: $screen-large-min - 1;
+
+$screen: "only screen" !default;
+$landscape: "#{$screen} and (orientation: landscape)";
+$portrait: "#{$screen} and (orientation: portrait)";
+$xsmall-up: "#{$screen} and (min-width:#{$screen-xsmall-min})";
+$xsmall-only: "#{$screen} and (max-width:#{$screen-xsmall-max})";
+$small-up: "#{$screen} and (min-width:#{$screen-small-min})";
+$small-only: "#{$screen} and (max-width:#{$screen-small-max})";
+$medium-up: "#{$screen} and (min-width:#{$screen-medium-min})";
+$medium-only: "#{$screen} and (max-width:#{$screen-medium-max})";
+$large-up: "#{$screen} and (min-width:#{$screen-large-min})";
+$large-only: "#{$screen} and (max-width:#{$screen-large-max})";
+$xlarge-up: "#{$screen} and (min-width:#{$screen-xlarge-min})";
+$xlarge-only: "#{$screen} and (max-width:#{$screen-xlarge-max})";
+
+
+.breakpoint {
+
+
+  &.sticky-content{
+    top: 120px;
+    z-index: 101;
+  }
+}
+
+@media #{$medium-only} {
+  .breakpoint::after {
+    content: 'medium-only';
+  }
+}
+
+@media #{$medium-up} {
+  .breakpoint::after {
+    content: 'medium-up';
+  }
+}
+
+@media #{$large-up} {
+  .breakpoint::after {
+    content: 'large-up';
+  }
+}
+
+@media #{$xlarge-up} {
+  .breakpoint::after {
+    content: 'xlarge-up';
+  }
+}
+
+@media #{$small-only} {
+  .breakpoint::after {
+    content: 'small-only';
+  }
+}

@@ -1,0 +1,14 @@
+
+
+$base-font-size: 16;
+$base-line-height: 1.5;
+
+@mixin rem-calc($pixels) {
+  font-size: $pixels / $base-font-size + rem;
+}
+
+
+@mixin color($property, $var, $fallback) {
+  #{$property}: $fallback;
+  #{$property}: var($var, $fallback);
+}

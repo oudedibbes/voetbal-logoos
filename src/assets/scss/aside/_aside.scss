@@ -1,0 +1,17 @@
+.aside{
+  width: 336px;
+  h1,h2{
+    color:#fff;
+    font-family: $font-family-text;
+  }
+  .section{
+    color: #fff;
+    font-family: $font-family-text;
+  }
+
+  &.sticky-content{
+    top: 120px;
+    z-index: 100;
+  }
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(75,108,183,1) 0%, rgba(55,82,141,1) 90% );
+}
