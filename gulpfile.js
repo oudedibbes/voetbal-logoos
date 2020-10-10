@@ -34,10 +34,10 @@ const stream = browsersync.stream
 // BrowserSync
 function browserSync(done) {
 	browsersync.init({
-		proxy: 'https://darkmode.test',
+		proxy: 'https://voetbal-logoos.test',
 		https: {
-			key: '/usr/local/etc/nginx/certs/darkmode.test+3-key.pem',
-			cert: '/usr/local/etc/nginx/certs/darkmode.test+3.pem',
+			key: '/usr/local/etc/nginx/certs/voetbal-logoos.test+3-key.pem',
+			cert: '/usr/local/etc/nginx/certs/voetbal-logoos.test+3.pem',
 		},
 	})
 	done()
