@@ -14,6 +14,7 @@ const newer = require('gulp-newer')
 const rimraf = require('rimraf')
 const plumber = require('gulp-plumber')
 const postcss = require('gulp-postcss')
+const postcssPresetEnv = require('postcss-preset-env')
 const postcssNormalize = require('postcss-normalize')
 const filter = require('gulp-filter')
 const htmlmin = require('gulp-htmlmin')
@@ -168,6 +169,9 @@ function css() {
 				postcssNormalize({
 					forceImport: 'sanitize.css',
 				}),
+				postcssPresetEnv({
+					autoprefixer: { grid: true }
+			}),
 				cssnano(),
 			])
 		)
