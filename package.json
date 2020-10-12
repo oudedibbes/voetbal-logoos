@@ -46,7 +46,8 @@
     "rfs": "^9.0.3",
     "rimraf": "^3.0.2",
     "stickyfilljs": "^2.1.0",
-    "terser": "^5.3.4"
+    "terser": "^5.3.4",
+    "webpack": "^5.0.0"
   },
   "browserslist": [
     "last 12 version",
