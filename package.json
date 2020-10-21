@@ -13,6 +13,7 @@
     "browser-sync": "^2.26.12",
     "browserslist": "^4.14.5",
     "cssnano": "^4.1.10",
+    "eslint": "^7.11.0",
     "gulp": "^4.0.2",
     "gulp-cache-bust": "^1.4.1",
     "gulp-cachebust": "^0.0.11",
