@@ -1,3 +1,23 @@
+:root {
+  --global-background: hsl(0 0% 100%);
+  --global-foreground: hsl(0 0% 0%);
+  --accent-color: hsl(226deg 100% 50%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --global-background: hsl(0 0% 0%);
+    --global-foreground: hsl(0 0% 100%);
+    --accent-color: hsl(226deg 100% 50%);
+  }
+}
+
+html {
+  background-color: var(--global-background);
+  color: var(--global-foreground);
+  transition: all 200ms;
+}
+
 *,
 *::before,
 *::after {
@@ -36,11 +56,10 @@ body {
   color: var(--main-text-color);
   background-color: var(--main-background-color);
   transition: background-color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2) 0s;
-
-
-
-
 }
+
+
+
 
 strong {
   font-family: $font-family-text;
@@ -389,5 +408,14 @@ section {
 
   @media #{$small-up} {
     width: 25%;
+  }
+}
+
+
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
   }
 }

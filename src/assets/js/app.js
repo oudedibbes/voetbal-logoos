@@ -1,3 +1,14 @@
+
+const html = document.documentElement
+const themeButtons = document.querySelectorAll('[data-set-theme]');
+
+themeButtons.forEach((button) => {
+  const theme = button.dataset.setTheme;
+
+  button.addEventListener('click', () => {
+    html.dataset.theme = theme;
+  })
+})
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 (function (window, document) {

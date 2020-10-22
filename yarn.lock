@@ -953,7 +953,8 @@ __metadata:
     browserslist: ^4.14.5
     cssnano: ^4.1.10
     eslint: ^7.11.0
-    eslint-plugin-import: latest
+    eslint-config-airbnb-base: ^14.2.0
+    eslint-plugin-import: ^2.22.1
     gulp: ^4.0.2
     gulp-cache-bust: ^1.4.1
     gulp-cachebust: ^0.0.11
@@ -978,6 +979,8 @@ __metadata:
     minimatch: ^3.0.4
     path: ^0.12.7
     postcss: ^8.1.1
+    postcss-100vh-fix: ^1.0.2
+    postcss-dark-theme-class: ^0.5.1
     postcss-import: ^12.0.1
     postcss-normalize: ^9.0.0
     postcss-preset-env: ^6.7.0
@@ -2753,6 +2756,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"confusing-browser-globals@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "confusing-browser-globals@npm:1.0.9"
+  checksum: 319e6d15384745d3ff4a5ca0357b687e0d36a1ab29a03084e192ea12802532de0fa7319169b09e971aba6a291f8a5ca333105e0fb239ed3f6c891f13eea2bea6
+  languageName: node
+  linkType: hard
+
 "connect-history-api-fallback@npm:^1":
   version: 1.6.0
   resolution: "connect-history-api-fallback@npm:1.6.0"
@@ -4000,6 +4010,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-config-airbnb-base@npm:^14.2.0":
+  version: 14.2.0
+  resolution: "eslint-config-airbnb-base@npm:14.2.0"
+  dependencies:
+    confusing-browser-globals: ^1.0.9
+    object.assign: ^4.1.0
+    object.entries: ^1.1.2
+  peerDependencies:
+    eslint: ^5.16.0 || ^6.8.0 || ^7.2.0
+    eslint-plugin-import: ^2.21.2
+  checksum: 2d76c5e7acac1a56c9641947eaa36c0239374889e1dab6ed12890b1406178ed3417f33c01de78067d1bf064cd0b2781ac1bb2dd94ed68eb4af08b9ebc0383b2d
+  languageName: node
+  linkType: hard
+
 "eslint-import-resolver-node@npm:^0.3.4":
   version: 0.3.4
   resolution: "eslint-import-resolver-node@npm:0.3.4"
@@ -4020,7 +4044,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:latest":
+"eslint-plugin-import@npm:^2.22.1":
   version: 2.22.1
   resolution: "eslint-plugin-import@npm:2.22.1"
   dependencies:
@@ -8442,6 +8466,17 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"object.entries@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "object.entries@npm:1.1.2"
+  dependencies:
+    define-properties: ^1.1.3
+    es-abstract: ^1.17.5
+    has: ^1.0.3
+  checksum: bcde47ee0396df8bc074e3194b74d3983e3da205321836f132cc55403f26cd06cd8d677492ca35697fa4d52419428fec2e01b60a96db1c22d21f1978d37db97d
+  languageName: node
+  linkType: hard
+
 "object.getownpropertydescriptors@npm:^2.1.0":
   version: 2.1.0
   resolution: "object.getownpropertydescriptors@npm:2.1.0"
@@ -9211,6 +9246,15 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"postcss-100vh-fix@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "postcss-100vh-fix@npm:1.0.2"
+  peerDependencies:
+    postcss: ^8.1.0
+  checksum: abfaece1119200b336f075cae34b0fc7ec70a20ca1af8acbd94c5b168c6033ecb3a8c87d0f00e016fafd05e8c4a15a2f8ee077e7f858430c68d5c1256dffb8fa
+  languageName: node
+  linkType: hard
+
 "postcss-advanced-variables@npm:^3.0.0":
   version: 3.0.1
   resolution: "postcss-advanced-variables@npm:3.0.1"
@@ -9363,6 +9407,15 @@ fsevents@~2.1.2:
     postcss: ^7.0.2
     postcss-selector-parser: ^5.0.0-rc.3
   checksum: 7d0d5f7751e54b40726d51196ba5569d18488d25ef7b1837ec26d5f32909d3cb4850edd527d70d1a141b7d81aeeed87ca00037f01e318b43fde92e72bb9fa141
+  languageName: node
+  linkType: hard
+
+"postcss-dark-theme-class@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "postcss-dark-theme-class@npm:0.5.1"
+  peerDependencies:
+    postcss: ^8.1.0
+  checksum: b5f0d1fcef4c3f6a7ed95565668042b65bd8f23f49a060ce54544362361a0de42c417f9e66427f9136d1369d55b5c01ff8d41fdb477960211ccd89b5ea905a5c
   languageName: node
   linkType: hard
 
