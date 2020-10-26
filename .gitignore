@@ -156,5 +156,10 @@ dist
 
 # and uncomment the following lines
  .pnp.*
+ 
+### NOVA ###
+
+.nova
+.nova/*
 
 # End of https://www.toptal.com/developers/gitignore/api/yarn,node,macos
