@@ -945,6 +945,7 @@ __metadata:
     gulp-clean-css: ^4.3.0
     gulp-cli: ^2.3.0
     gulp-concat: ^2.6.1
+    gulp-dart-scss: ^1.1.0
     gulp-favicons: ^2.4.0
     gulp-filter: ^6.0.0
     gulp-htmlmin: ^5.0.1
@@ -5334,6 +5335,17 @@ fsevents@~2.1.2:
     through2: ^2.0.0
     vinyl: ^2.0.0
   checksum: ccb2d0e9f28a8bb21c3c836cbf357e459176be409cbe6d0a696e6be79c7a54b9e0473cb04257ffee0b13a78ac0eb4f75ecd4faf6f47c2ef3d2f64fed975cb90a
+  languageName: node
+  linkType: hard
+
+"gulp-dart-scss@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "gulp-dart-scss@npm:1.1.0"
+  dependencies:
+    plugin-error: ^1.0.1
+    sass: ^1.26.11
+    vinyl-sourcemaps-apply: ^0.2.1
+  checksum: 0ade77a4d56011422daf584a2d1ad9ad8ddb1fc221d55e9c27c52cb6a2541a21d15b8ba11e6e4aa2c0a536775bd132a9eadf3956044df0bb0d4c557828c86539
   languageName: node
   linkType: hard
 
@@ -10676,7 +10688,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.29.0":
+"sass@npm:^1.26.11, sass@npm:^1.29.0":
   version: 1.29.0
   resolution: "sass@npm:1.29.0"
   dependencies:

@@ -1,6 +1,6 @@
 const gulp = require("gulp");
 const autoprefixer = require("autoprefixer");
-const sass = require("gulp-sass");
+const sass = require("gulp-dart-scss");
 const terser = require("gulp-terser-js");
 const imagemin = require("gulp-imagemin");
 const cssnano = require("cssnano");
@@ -23,6 +23,8 @@ const cachebust = require("gulp-cache-bust");
 const replace = require("gulp-replace");
 
 const favicons = require("gulp-favicons");
+
+sass.compiler = require('sass');
 
 // const urlAdjuster = require('gulp-css-replace-url');
 
@@ -156,13 +158,14 @@ function css() {
   return gulp
     .src("src/assets/scss/**/*.scss")
     .pipe(plumber())
-    .pipe(sourcemaps.init());
+    .pipe(sourcemaps.init())
 
-  sass
-    .renfer({
-      outputStyle: "expanded",
-      precision: 10,
-    })
+    .pipe(
+			sass({
+				outputStyle: "expanded",
+				precision: 10,
+			})
+		)
 
     .pipe(
       postcss([
@@ -261,12 +264,12 @@ function watchFiles() {
 const js = gulp.series(scripts);
 
 const build = gulp.series(
-  gulp.parallel(css, images, fonts, html, js, vendors, polyfills)
+  gulp.parallel(css, images, fonts, html, js, polyfills)
 );
 
 const buildall = gulp.series(
   clean,
-  gulp.parallel(css, images, favicon, fonts, html, js, vendors)
+  gulp.parallel(css, images, favicon, fonts, html, js)
 );
 
 const watch = gulp.parallel(watchFiles, cacheBustTask, browserSync);

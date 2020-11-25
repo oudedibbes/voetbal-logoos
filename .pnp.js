@@ -50,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gulp-clean-css", "npm:4.3.0"],
             ["gulp-cli", "npm:2.3.0"],
             ["gulp-concat", "npm:2.6.1"],
+            ["gulp-dart-scss", "npm:1.1.0"],
             ["gulp-favicons", "npm:2.4.0"],
             ["gulp-filter", "npm:6.0.0"],
             ["gulp-htmlmin", "npm:5.0.1"],
@@ -1288,6 +1289,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gulp-clean-css", "npm:4.3.0"],
             ["gulp-cli", "npm:2.3.0"],
             ["gulp-concat", "npm:2.6.1"],
+            ["gulp-dart-scss", "npm:1.1.0"],
             ["gulp-favicons", "npm:2.4.0"],
             ["gulp-filter", "npm:6.0.0"],
             ["gulp-htmlmin", "npm:5.0.1"],
@@ -6120,6 +6122,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["concat-with-sourcemaps", "npm:1.1.0"],
             ["through2", "npm:2.0.5"],
             ["vinyl", "npm:2.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["gulp-dart-scss", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/gulp-dart-scss-npm-1.1.0-c64ff6d374-0ade77a4d5.zip/node_modules/gulp-dart-scss/",
+          "packageDependencies": [
+            ["gulp-dart-scss", "npm:1.1.0"],
+            ["plugin-error", "npm:1.0.1"],
+            ["sass", "npm:1.29.0"],
+            ["vinyl-sourcemaps-apply", "npm:0.2.1"]
           ],
           "linkType": "HARD",
         }]
