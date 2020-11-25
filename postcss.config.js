@@ -10,10 +10,11 @@ module.exports = {
         lightSelector: '[data-theme='light']'
       }
     autoprefixer: {
-        browsers: ['last 12 version',
-        '> 1%',
-        'maintained node versions',
-        'not dead'],
+        browsers: [
+          ">0.2%",
+          "not dead",
+          "not op_mini all"
+        ],
       },
   ],
 };
