@@ -108,41 +108,43 @@
         width: 36px;
         height: 36px;
         top: 12px;
-        right: calc(0 + 18px);
+        right: calc(0px + 18px);
       }
 
       @media #{$medium-only} {
         width: 36px;
         height: 36px;
         top: 12px;
-        right: calc(0 + 18px);
+        right: calc(0px + 18px);
       }
 
       @media #{$large-up} {
         width: 36px;
         height: 36px;
         top: 12px;
-        right: calc(0 + 18px);
+        right: calc(0px + 18px);
       }
 
       @media #{$xlarge-up} {
         width: 36px;
         height: 36px;
         top: 12px;
-        right: calc(0 + 18px);
+        right: calc(0px + 18px);
       }
 
       @media #{$small-only} {
         width: 24px;
         height: 24px;
         top: 12px;
-        right: calc(0 + 12px);
+        right: calc(0px + 12px);
       }
     }
 
     &[aria-expanded="true"] {
       .select-css {
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.08), 0 32px 64px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08),
+          0 4px 8px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.08),
+          0 16px 32px rgba(0, 0, 0, 0.08), 0 32px 64px rgba(0, 0, 0, 0.08);
       }
 
       &::before {
@@ -193,7 +195,7 @@
 
   .custom-select-options {
     border: 1px solid #aaa;
-    border-radius: 0 0 0.25em .25em;
+    border-radius: 0 0 0.25em 0.25em;
     margin: 0;
     margin-top: -0.5em;
     padding: 0;
@@ -206,7 +208,9 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: 75vh;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.08), 0 32px 64px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08),
+      0 4px 8px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.08),
+      0 16px 32px rgba(0, 0, 0, 0.08), 0 32px 64px rgba(0, 0, 0, 0.08);
 
     @media #{$small-only} {
       height: 65vh;
@@ -214,7 +218,7 @@
   }
 
   .custom-select-options li {
-    padding: .5em;
+    padding: 0.5em;
     border-bottom: 1px solid #aaa;
     display: flex;
     align-items: center;
@@ -244,13 +248,13 @@
       }
 
       &.club-name-info {
-        strong{
+        strong {
           @include rem-calc(16);
         }
         @include rem-calc(12);
 
         @media #{$small-up} {
-          strong{
+          strong {
             @include rem-calc(18);
           }
           @include rem-calc(14);
@@ -260,7 +264,11 @@
 
     &.list-divider {
       color: #fff;
-      background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(15, 76, 129, 1) 0%, rgba(55, 82, 141, 1) 90%);
+      background-image: radial-gradient(
+        circle farthest-corner at 10% 20%,
+        rgba(15, 76, 129, 1) 0%,
+        rgba(55, 82, 141, 1) 90%
+      );
       font-weight: $wght300;
 
       @include rem-calc(16);
