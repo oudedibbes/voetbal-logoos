@@ -1,10 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-  if (typeof exports === 'object' && typeof module === 'object') module.exports = factory();
-  else if (typeof define === 'function' && define.amd) define('darkmode-js', [], factory);
+  if (typeof exports === 'object' && typeof module === 'object')
+    module.exports = factory();
+  else if (typeof define === 'function' && define.amd)
+    define('darkmode-js', [], factory);
   else if (typeof exports === 'object') exports['darkmode-js'] = factory();
   else root['darkmode-js'] = factory();
-}(typeof self !== 'undefined' ? self : this, () =>
-  /** *** */ (function (modules) {
+})(typeof self !== 'undefined' ? self : this, () =>
+  /** *** */ (function(modules) {
     // webpackBootstrap
     /** *** */ // The module cache
     /** *** */ const installedModules = {}; // The require function
@@ -41,7 +43,7 @@
     /** *** */
     /** *** */ /** *** */ __webpack_require__.c = installedModules; // define getter function for harmony exports
     /** *** */
-    /** *** */ /** *** */ __webpack_require__.d = function (
+    /** *** */ /** *** */ __webpack_require__.d = function(
       exports,
       name,
       getter,
@@ -51,34 +53,38 @@
           enumerable: true,
           get: getter,
         });
+
         /** *** */
       }
+
       /** *** */
     }; // define __esModule on exports
     /** *** */
-    /** *** */ /** *** */ __webpack_require__.r = function (exports) {
+    /** *** */ /** *** */ __webpack_require__.r = function(exports) {
       /** *** */ if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
         /** *** */ Object.defineProperty(exports, Symbol.toStringTag, {
           value: 'Module',
         });
+
         /** *** */
       }
       /** *** */ Object.defineProperty(exports, '__esModule', { value: true });
       /** *** */
     }; // create a fake namespace object // mode & 1: value is a module id, require it // mode & 2: merge all properties of value into the ns // mode & 4: return value when already ns object // mode & 8|1: behave like require
     /** *** */
-    /** *** */ /** *** */ /** *** */ /** *** */ /** *** */ /** *** */ __webpack_require__.t = function (
+    /** *** */ /** *** */ /** *** */ /** *** */ /** *** */ /** *** */ __webpack_require__.t = function(
       value,
       mode,
     ) {
       /** *** */ if (mode & 1) value = __webpack_require__(value);
       /** *** */ if (mode & 8) return value;
       /** *** */ if (
-        mode & 4
-        && typeof value === 'object'
-        && value
-        && value.__esModule
-      ) return value;
+        mode & 4 &&
+        typeof value === 'object' &&
+        value &&
+        value.__esModule
+      )
+        return value;
       /** *** */ const ns = Object.create(null);
       /** *** */ __webpack_require__.r(ns);
       /** *** */ Object.defineProperty(ns, 'default', {
@@ -94,20 +100,21 @@
       /** *** */
     }; // getDefaultExport function for compatibility with non-harmony modules
     /** *** */
-    /** *** */ /** *** */ __webpack_require__.n = function (module) {
-      /** *** */ const getter = module && module.__esModule
-        ? /** *** */ function getDefault() {
-          return module.default;
-        }
-        : /** *** */ function getModuleExports() {
-          return module;
-        };
+    /** *** */ /** *** */ __webpack_require__.n = function(module) {
+      /** *** */ const getter =
+        module && module.__esModule
+          ? /** *** */ function getDefault() {
+            return module.default;
+          }
+          : /** *** */ function getModuleExports() {
+            return module;
+          };
       /** *** */ __webpack_require__.d(getter, 'a', getter);
       /** *** */ return getter;
       /** *** */
     }; // Object.prototype.hasOwnProperty.call
     /** *** */
-    /** *** */ /** *** */ __webpack_require__.o = function (object, property) {
+    /** *** */ /** *** */ __webpack_require__.o = function(object, property) {
       return Object.prototype.hasOwnProperty.call(object, property);
     }; // __webpack_public_path__
     /** *** */
@@ -117,16 +124,18 @@
     /** *** */ /** *** */ return __webpack_require__(
       (__webpack_require__.s = './src/index.js'),
     );
+
     /** *** */
-  }(
+  })(
+
     /** ********************************************************************* */
     /** *** */ {
       /***/ './src/darkmode.js':
-      /*! *************************!*\
+      /* ! *************************!*\
   !*** ./src/darkmode.js ***!
   \************************ */
-      /*! no static exports found */
-      /***/ function (module, exports, __webpack_require__) {
+      /* ! no static exports found */
+      /***/ function(module, exports, __webpack_require__) {
         Object.defineProperty(exports, '__esModule', {
           value: true,
         });
@@ -149,7 +158,8 @@
         }
 
         function _createClass(Constructor, protoProps, staticProps) {
-          if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+          if (protoProps)
+            _defineProperties(Constructor.prototype, protoProps);
           if (staticProps) _defineProperties(Constructor, staticProps);
           return Constructor;
         }
@@ -158,8 +168,9 @@
         exports.IS_BROWSER = IS_BROWSER;
 
         const Darkmode =
+
             /* #__PURE__ */
-            (function () {
+            (function() {
               function Darkmode(options) {
                 _classCallCheck(this, Darkmode);
 
@@ -180,7 +191,8 @@
                   saveInCookies: true,
                   autoMatchOsTheme: true,
                 };
-                options = { ...defaultOptions, ...options };
+                options = { ...defaultOptions,
+                  ...options };
                 const css = '\n      .darkmode-layer {\n        position: fixed;\n        pointer-events: none;\n        background: '
                   .concat(options.mixColor, ';\n        transition: all ')
                   .concat(
@@ -217,14 +229,17 @@
                 button.innerHTML = options.label;
                 layer.classList.add('darkmode-layer');
                 background.classList.add('darkmode-background');
-                const darkmodeActivated = window.localStorage.getItem('darkmode') === 'true';
-                const preferedThemeOs = options.autoMatchOsTheme
-                  && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const darkmodeNeverActivatedByAction = window.localStorage.getItem('darkmode') === null;
+                const darkmodeActivated =
+                  window.localStorage.getItem('darkmode') === 'true';
+                const preferedThemeOs =
+                  options.autoMatchOsTheme &&
+                  window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const darkmodeNeverActivatedByAction =
+                  window.localStorage.getItem('darkmode') === null;
 
                 if (
-                  (darkmodeActivated === true && options.saveInCookies)
-                  || (darkmodeNeverActivatedByAction && preferedThemeOs)
+                  (darkmodeActivated === true && options.saveInCookies) ||
+                  (darkmodeNeverActivatedByAction && preferedThemeOs)
                 ) {
                   layer.classList.add(
                     'darkmode-layer--expanded',
@@ -330,7 +345,7 @@
               ]);
 
               return Darkmode;
-            }());
+            })();
 
         exports.default = Darkmode;
 
@@ -338,18 +353,18 @@
       },
 
       /***/ './src/index.js':
-      /*! **********************!*\
+      /* ! **********************!*\
   !*** ./src/index.js ***!
   \********************* */
-      /*! no static exports found */
-      /***/ function (module, exports, __webpack_require__) {
+      /* ! no static exports found */
+      /***/ function(module, exports, __webpack_require__) {
         Object.defineProperty(exports, '__esModule', {
           value: true,
         });
         exports.default = void 0;
 
         const _darkmode = _interopRequireWildcard(
-          __webpack_require__(/*! ./darkmode */ './src/darkmode.js'),
+          __webpack_require__(/* ! ./darkmode */ './src/darkmode.js'),
         );
 
         function _interopRequireWildcard(obj) {
@@ -360,9 +375,10 @@
           if (obj != null) {
             for (const key in obj) {
               if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                const desc = Object.defineProperty && Object.getOwnPropertyDescriptor
-                  ? Object.getOwnPropertyDescriptor(obj, key)
-                  : {};
+                const desc =
+                    Object.defineProperty && Object.getOwnPropertyDescriptor
+                      ? Object.getOwnPropertyDescriptor(obj, key)
+                      : {};
                 if (desc.get || desc.set) {
                   Object.defineProperty(newObj, key, desc);
                 } else {
@@ -394,4 +410,5 @@
 
       /** *** */
     },
-  ))));
+  ),
+);

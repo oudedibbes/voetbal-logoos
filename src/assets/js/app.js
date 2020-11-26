@@ -1,19 +1,19 @@
 const html = document.documentElement;
-const themeButtons = document.querySelectorAll("[data-set-theme]");
+const themeButtons = document.querySelectorAll('[data-set-theme]');
 
 themeButtons.forEach((button) => {
   const theme = button.dataset.setTheme;
 
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     html.dataset.theme = theme;
   });
 })(
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-param-reassign */
-  (function (window, document) {
-    (function () {
+  (function(window, document) {
+    (function() {
       let lastTime = 0;
-      const vendors = ["ms", "moz", "webkit", "o"];
+      const vendors = ['ms', 'moz', 'webkit', 'o'];
       for (
         let x = 0;
         x < vendors.length && !window.requestAnimationFrame;
@@ -26,7 +26,7 @@ themeButtons.forEach((button) => {
           window[`${vendors[x]}CancelRequestAnimationFrame`];
       }
       if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = function (callback, element) {
+        window.requestAnimationFrame = function(callback, element) {
           const currTime = new Date().getTime();
           const timeToCall = Math.max(0, 16 - (currTime - lastTime));
           const id = window.setTimeout(() => {
@@ -38,35 +38,38 @@ themeButtons.forEach((button) => {
       }
 
       if (!window.cancelAnimationFrame) {
-        window.cancelAnimationFrame = function (id) {
+        window.cancelAnimationFrame = function(id) {
           clearTimeout(id);
         };
       }
     })();
 
-    const elements = document.querySelectorAll(".sticky-content");
+    const elements = document.querySelectorAll('.sticky-content');
+
     // Stickyfill.add(elements)
 
-    const body_content = document.querySelector(".site-content");
-    const header = document.querySelector("header");
-    const nav_content = document.querySelector(".navigation");
+    const body_content = document.querySelector('.site-content');
+    const header = document.querySelector('header');
+    const nav_content = document.querySelector('.navigation');
     if (
-      typeof body_content !== "undefined" &&
+      typeof body_content !== 'undefined' &&
       body_content != null &&
-      typeof header !== "undefined" &&
+      typeof header !== 'undefined' &&
       header != null &&
-      typeof nav_content !== "undefined" &&
+      typeof nav_content !== 'undefined' &&
       nav_content != null
     ) {
       const threshold = nav_content.getBoundingClientRect();
 
-      window.addEventListener("scroll", () => {
+      window.addEventListener('scroll', () => {
         if (window.scrollY >= threshold.top) {
+
           // header.classList.add('header--fixed');
-          nav_content.classList.add("--fixed");
+          nav_content.classList.add('--fixed');
         } else {
+
           // header.classList.remove('header--fixed');
-          nav_content.classList.remove("--fixed");
+          nav_content.classList.remove('--fixed');
         }
       });
     }
@@ -81,6 +84,7 @@ themeButtons.forEach((button) => {
 
       /* Start the animation. */
       window.requestAnimationFrame(function step(now) {
+
         /* Normalise the start date and calculate the current progress. */
         start = !start ? now : start;
         const progress = now - start;
@@ -91,9 +95,11 @@ themeButtons.forEach((button) => {
 
         /* Check whether the current progress is less than the given duration. */
         if (progress < duration) {
+
           /* Execute the function recursively. */
           window.requestAnimationFrame(step);
         } else {
+
           /* Set the scroll top to the end value. */
           document.documentElement.scrollTop = endValue;
           document.body.scrollTop = endValue;
@@ -102,10 +108,11 @@ themeButtons.forEach((button) => {
     }
 
     function scrollToSection(element) {
+
       /* Scroll until the button's next sibling comes into view. */
       element.nextElementSibling.scrollIntoView({
-        block: "start",
-        behavior: "smooth",
+        block: 'start',
+        behavior: 'smooth',
       });
     }
 
@@ -113,81 +120,87 @@ themeButtons.forEach((button) => {
     // /////////////////////////////////
     // assign names to things we'll need to use more than once
     const csScroll = nav_content.getBoundingClientRect();
-    const csSelector = document.querySelector("#myCustomSelect"); // the input, svg and ul as a group
-    const csInput = csSelector.querySelector("input");
-    const csList = csSelector.querySelector("ul");
-    const csOptions = csList.querySelectorAll("li");
-    const csIcons = csSelector.querySelectorAll("svg");
-    const csStatus = document.querySelector("#custom-select-status");
+    const csSelector = document.querySelector('#myCustomSelect'); // the input, svg and ul as a group
+    const csInput = csSelector.querySelector('input');
+    const csList = csSelector.querySelector('ul');
+    const csOptions = csList.querySelectorAll('li');
+    const csIcons = csSelector.querySelectorAll('svg');
+    const csStatus = document.querySelector('#custom-select-status');
     const aOptions = Array.from(csOptions);
 
     // when JS is loaded, set up our starting point
     // if JS fails to load, the custom select remains a plain text input
     // create and set start point for the state tracker
-    let csState = "initial";
+    let csState = 'initial';
+
     // inform assistive tech (screen readers) of the names & roles of the elements in our group
-    csSelector.setAttribute("role", "combobox");
-    csSelector.setAttribute("aria-haspopup", "listbox");
-    csSelector.setAttribute("aria-owns", "custom-select-list"); // container owns the list...
-    csInput.setAttribute("aria-autocomplete", "both");
-    csInput.setAttribute("aria-controls", "custom-select-list"); // ...but the input controls it
-    csList.setAttribute("role", "listbox");
+    csSelector.setAttribute('role', 'combobox');
+    csSelector.setAttribute('aria-haspopup', 'listbox');
+    csSelector.setAttribute('aria-owns', 'custom-select-list'); // container owns the list...
+    csInput.setAttribute('aria-autocomplete', 'both');
+    csInput.setAttribute('aria-controls', 'custom-select-list'); // ...but the input controls it
+    csList.setAttribute('role', 'listbox');
     csOptions.forEach((option) => {
-      option.setAttribute("role", "option");
-      option.setAttribute("tabindex", "-1"); // make li elements keyboard focusable by script only
+      option.setAttribute('role', 'option');
+      option.setAttribute('tabindex', '-1'); // make li elements keyboard focusable by script only
     });
+
     // set up a message to keep screen reader users informed of what the custom input is for/doing
     csStatus.textContent = `${csOptions.length} options available. Arrow down to browse or start typing to filter.`;
 
     // EVENTS
     // /////////////////////////////////
-    csSelector.addEventListener("click", (e) => {
+    csSelector.addEventListener('click', (e) => {
       const currentFocus = findFocus();
 
       switch (csState) {
-        case "initial": // if state = initial, toggleOpen and set state to opened
-          toggleList("Open");
-          setState("opened");
+        case 'initial': // if state = initial, toggleOpen and set state to opened
+          toggleList('Open');
+          setState('opened');
           break;
-        case "opened":
+        case 'opened':
+
           // if state = opened and focus on input, toggleShut and set state to initial
           if (currentFocus === csInput) {
-            toggleList("Shut");
-            setState("initial");
-          } else if (currentFocus.tagName === "LI") {
+            toggleList('Shut');
+            setState('initial');
+          } else if (currentFocus.tagName === 'LI') {
+
             // if state = opened and focus on list, makeChoice, toggleShut and set state to closed
             makeChoice(currentFocus);
-            toggleList("Shut");
-            setState("closed");
+            toggleList('Shut');
+            setState('closed');
           }
           break;
-        case "filtered":
+        case 'filtered':
+
           // if state = filtered and focus on list, makeChoice and set state to closed
-          if (currentFocus.tagName === "LI") {
+          if (currentFocus.tagName === 'LI') {
             makeChoice(currentFocus);
-            toggleList("Shut");
-            setState("closed");
+            toggleList('Shut');
+            setState('closed');
           } // if state = filtered and focus on input, do nothing (wait for next user input)
 
           break;
-        case "closed": // if state = closed, toggleOpen and set state to filtered? or opened?
-          toggleList("Open");
-          setState("filtered");
+        case 'closed': // if state = closed, toggleOpen and set state to filtered? or opened?
+          toggleList('Open');
+          setState('filtered');
           break;
       }
 
       scrollToSection(navigation);
     });
 
-    csSelector.addEventListener("keyup", (e) => {
+    csSelector.addEventListener('keyup', (e) => {
       doKeyAction(e.key);
     });
 
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest("#myCustomSelect")) {
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#myCustomSelect')) {
+
         // click outside of the custom group
-        toggleList("Shut");
-        setState("initial");
+        toggleList('Shut');
+        setState('initial');
       }
     });
 
@@ -195,13 +208,14 @@ themeButtons.forEach((button) => {
     // /////////////////////////////////
 
     function toggleList(whichWay) {
-      if (whichWay === "Open") {
-        csList.classList.remove("hidden-all");
-        csSelector.setAttribute("aria-expanded", "true");
+      if (whichWay === 'Open') {
+        csList.classList.remove('hidden-all');
+        csSelector.setAttribute('aria-expanded', 'true');
       } else {
+
         // === 'Shut'
-        csList.classList.add("hidden-all");
-        csSelector.setAttribute("aria-expanded", "false");
+        csList.classList.add('hidden-all');
+        csSelector.setAttribute('aria-expanded', 'false');
       }
     }
 
@@ -211,53 +225,58 @@ themeButtons.forEach((button) => {
     }
 
     function moveFocus(fromHere, toThere) {
+
       // grab the currently showing options, which might have been filtered
       const aCurrentOptions = aOptions.filter((option) => {
-        if (option.style.display === "") {
+        if (option.style.display === '') {
           return true;
         }
       });
+
       // don't move if all options have been filtered out
       if (aCurrentOptions.length === 0) {
         return;
       }
-      if (toThere === "input") {
+      if (toThere === 'input') {
         csInput.focus();
       }
+
       // possible start points
       switch (fromHere) {
         case csInput:
-          if (toThere === "forward") {
+          if (toThere === 'forward') {
             aCurrentOptions[0].focus();
-          } else if (toThere === "back") {
+          } else if (toThere === 'back') {
             aCurrentOptions[aCurrentOptions.length - 1].focus();
           }
           break;
         case csOptions[0]:
-          if (toThere === "forward") {
+          if (toThere === 'forward') {
             aCurrentOptions[1].focus();
-          } else if (toThere === "back") {
+          } else if (toThere === 'back') {
             csInput.focus();
           }
           break;
         case csOptions[csOptions.length - 1]:
-          if (toThere === "forward") {
+          if (toThere === 'forward') {
             aCurrentOptions[0].focus();
-          } else if (toThere === "back") {
+          } else if (toThere === 'back') {
             aCurrentOptions[aCurrentOptions.length - 2].focus();
           }
           break;
         default:
+
           // middle list or filtered items
           const currentItem = findFocus();
           const whichOne = aCurrentOptions.indexOf(currentItem);
-          if (toThere === "forward") {
+          if (toThere === 'forward') {
             const nextOne = aCurrentOptions[whichOne + 1];
             nextOne.focus();
-          } else if (toThere === "back" && whichOne > 0) {
+          } else if (toThere === 'back' && whichOne > 0) {
             const previousOne = aCurrentOptions[whichOne - 1];
             previousOne.focus();
           } else {
+
             // if whichOne = 0
             csInput.focus();
           }
@@ -272,11 +291,11 @@ themeButtons.forEach((button) => {
           return true;
         }
       });
-      csOptions.forEach((option) => (option.style.display = "none"));
+      csOptions.forEach((option) => (option.style.display = 'none'));
       aFilteredOptions.forEach((option) => {
-        option.style.display = "";
+        option.style.display = '';
       });
-      setState("filtered");
+      setState('filtered');
       updateStatus(aFilteredOptions.length);
     }
 
@@ -285,174 +304,191 @@ themeButtons.forEach((button) => {
     }
 
     function makeChoice(whichOption) {
-      const optionTitle = whichOption.querySelector("strong");
+      const optionTitle = whichOption.querySelector('strong');
       csInput.value = optionTitle.textContent;
-      moveFocus(document.activeElement, "input");
+      moveFocus(document.activeElement, 'input');
+
       // update aria-selected, if using
     }
 
     function setState(newState) {
       switch (newState) {
-        case "initial":
-          csState = "initial";
+        case 'initial':
+          csState = 'initial';
           break;
-        case "opened":
-          csState = "opened";
+        case 'opened':
+          csState = 'opened';
           break;
-        case "filtered":
-          csState = "filtered";
+        case 'filtered':
+          csState = 'filtered';
           break;
-        case "closed":
-          csState = "closed";
+        case 'closed':
+          csState = 'closed';
       }
+
       // console.log({csState})
     }
 
     function doKeyAction(whichKey) {
       const currentFocus = findFocus();
       switch (whichKey) {
-        case "Enter":
-          if (csState === "initial") {
+        case 'Enter':
+          if (csState === 'initial') {
+
             // if state = initial, toggleOpen and set state to opened
-            toggleList("Open");
-            setState("opened");
-          } else if (csState === "opened" && currentFocus.tagName === "LI") {
+            toggleList('Open');
+            setState('opened');
+          } else if (csState === 'opened' && currentFocus.tagName === 'LI') {
+
             // if state = opened and focus on list, makeChoice and set state to closed
             makeChoice(currentFocus);
-            toggleList("Shut");
-            setState("closed");
-          } else if (csState === "opened" && currentFocus === csInput) {
+            toggleList('Shut');
+            setState('closed');
+          } else if (csState === 'opened' && currentFocus === csInput) {
+
             // if state = opened and focus on input, close it
-            toggleList("Shut");
-            setState("closed");
-          } else if (csState === "filtered" && currentFocus.tagName === "LI") {
+            toggleList('Shut');
+            setState('closed');
+          } else if (csState === 'filtered' && currentFocus.tagName === 'LI') {
+
             // if state = filtered and focus on list, makeChoice and set state to closed
             makeChoice(currentFocus);
-            toggleList("Shut");
-            setState("closed");
-          } else if (csState === "filtered" && currentFocus === csInput) {
+            toggleList('Shut');
+            setState('closed');
+          } else if (csState === 'filtered' && currentFocus === csInput) {
+
             // if state = filtered and focus on input, set state to opened
-            toggleList("Open");
-            setState("opened");
+            toggleList('Open');
+            setState('opened');
           } else {
+
             // i.e. csState is closed, or csState is opened/filtered but other focus point?
             // if state = closed, set state to filtered? i.e. open but keep existing input?
-            toggleList("Open");
-            setState("filtered");
+            toggleList('Open');
+            setState('filtered');
           }
           break;
 
-        case "Escape":
+        case 'Escape':
+
           // if state = initial, do nothing
           // if state = opened or filtered, set state to initial
           // if state = closed, do nothing
-          if (csState === "opened" || csState === "filtered") {
-            toggleList("Shut");
-            setState("initial");
+          if (csState === 'opened' || csState === 'filtered') {
+            toggleList('Shut');
+            setState('initial');
           }
           break;
 
-        case "ArrowDown":
-          if (csState === "initial" || csState === "closed") {
+        case 'ArrowDown':
+          if (csState === 'initial' || csState === 'closed') {
+
             // if state = initial or closed, set state to opened and moveFocus to first
-            toggleList("Open");
-            moveFocus(csInput, "forward");
-            setState("opened");
+            toggleList('Open');
+            moveFocus(csInput, 'forward');
+            setState('opened');
           } else {
+
             // if state = opened and focus on input, moveFocus to first
             // if state = opened and focus on list, moveFocus to next/first
             // if state = filtered and focus on input, moveFocus to first
             // if state = filtered and focus on list, moveFocus to next/first
-            toggleList("Open");
-            moveFocus(currentFocus, "forward");
+            toggleList('Open');
+            moveFocus(currentFocus, 'forward');
           }
           break;
-        case "ArrowUp":
-          if (csState === "initial" || csState === "closed") {
+        case 'ArrowUp':
+          if (csState === 'initial' || csState === 'closed') {
+
             // if state = initial, set state to opened and moveFocus to last
             // if state = closed, set state to opened and moveFocus to last
-            toggleList("Open");
-            moveFocus(csInput, "back");
-            setState("opened");
+            toggleList('Open');
+            moveFocus(csInput, 'back');
+            setState('opened');
           } else {
+
             // if state = opened and focus on input, moveFocus to last
             // if state = opened and focus on list, moveFocus to prev/last
             // if state = filtered and focus on input, moveFocus to last
             // if state = filtered and focus on list, moveFocus to prev/last
-            moveFocus(currentFocus, "back");
+            moveFocus(currentFocus, 'back');
           }
           break;
         default:
-          if (csState === "initial") {
+          if (csState === 'initial') {
+
             // if state = initial, toggle open, doFilter and set state to filtered
-            toggleList("Open");
+            toggleList('Open');
             doFilter();
-            setState("filtered");
-          } else if (csState === "opened") {
+            setState('filtered');
+          } else if (csState === 'opened') {
+
             // if state = opened, doFilter and set state to filtered
             doFilter();
-            setState("filtered");
-          } else if (csState === "closed") {
+            setState('filtered');
+          } else if (csState === 'closed') {
+
             // if state = closed, doFilter and set state to filtered
             doFilter();
-            setState("filtered");
+            setState('filtered');
           } else {
+
             // already filtered
             doFilter();
           }
           break;
       }
     }
-  })(window, document)
+  })(window, document),
 );
 
-const visible = document.querySelector(".visible");
-const invisible = document.querySelector(".invisible");
+const visible = document.querySelector('.visible');
+const invisible = document.querySelector('.invisible');
 
-const theme = localStorage.getItem("theme");
-if (theme === "dark") {
-  document.documentElement.setAttribute("data-theme", "dark");
+const theme = localStorage.getItem('theme');
+if (theme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
 }
 
 const userPrefers = getComputedStyle(document.documentElement).getPropertyValue(
-  "content"
+  'content',
 );
 
-if (theme === "dark") {
-  document.getElementById("theme-toggle").innerHTML = "Light Mode";
-} else if (theme === "light") {
-  document.getElementById("theme-toggle").innerHTML = "Dark Mode";
-} else if (userPrefers === "dark") {
-  document.documentElement.setAttribute("data-theme", "dark");
-  window.localStorage.setItem("theme", "dark");
-  document.getElementById("theme-toggle").innerHTML = "Light Mode";
+if (theme === 'dark') {
+  document.getElementById('theme-toggle').innerHTML = 'Light Mode';
+} else if (theme === 'light') {
+  document.getElementById('theme-toggle').innerHTML = 'Dark Mode';
+} else if (userPrefers === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  window.localStorage.setItem('theme', 'dark');
+  document.getElementById('theme-toggle').innerHTML = 'Light Mode';
 } else {
-  document.documentElement.setAttribute("data-theme", "light");
-  window.localStorage.setItem("theme", "light");
-  document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+  document.documentElement.setAttribute('data-theme', 'light');
+  window.localStorage.setItem('theme', 'light');
+  document.getElementById('theme-toggle').innerHTML = 'Dark Mode';
 }
 
 function modeSwitcher() {
-  const currentMode = document.documentElement.getAttribute("data-theme");
-  if (currentMode === "dark") {
-    document.documentElement.setAttribute("data-theme", "light");
-    window.localStorage.setItem("theme", "light");
-    document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+  const currentMode = document.documentElement.getAttribute('data-theme');
+  if (currentMode === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    window.localStorage.setItem('theme', 'light');
+    document.getElementById('theme-toggle').innerHTML = 'Dark Mode';
 
-    visible.classList.remove("visible");
-    visible.classList.add("invisible");
+    visible.classList.remove('visible');
+    visible.classList.add('invisible');
 
-    invisible.classList.remove("invisible");
-    invisible.classList.add("visible");
+    invisible.classList.remove('invisible');
+    invisible.classList.add('visible');
   } else {
-    document.documentElement.setAttribute("data-theme", "dark");
-    window.localStorage.setItem("theme", "dark");
-    document.getElementById("theme-toggle").innerHTML = "Light Mode";
+    document.documentElement.setAttribute('data-theme', 'dark');
+    window.localStorage.setItem('theme', 'dark');
+    document.getElementById('theme-toggle').innerHTML = 'Light Mode';
 
-    visible.classList.remove("invisible");
-    visible.classList.add("visible");
+    visible.classList.remove('invisible');
+    visible.classList.add('visible');
 
-    invisible.classList.remove("visible");
-    invisible.classList.add("invisible");
+    invisible.classList.remove('visible');
+    invisible.classList.add('invisible');
   }
 }
