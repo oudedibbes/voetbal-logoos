@@ -27,17 +27,14 @@
     &:last-child {
       margin-bottom: 0;
     }
-    .flex-grid__list{
+    .flex-grid__list {
       .hex-grid__item {
         width: calc(100% / 2 - 10px);
         margin: 0 10px 0px 0;
-        &:nth-child(2n){
+        &:nth-child(2n) {
           margin: 0 0 0px 0;
         }
       }
     }
-
   }
-
-
 }
