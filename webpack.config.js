@@ -4,6 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = (env, argv) => ({
   mode: argv.mode,
@@ -68,12 +69,41 @@ module.exports = (env, argv) => ({
           },
         ],
       },
+      {
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+        test: /\.(jpe?g|png|gif|svg)$/i,
+      },
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'assets/css/app.css',
+    }),
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+
+        // Lossless optimization with custom option
+        // Feel free to experiment with options for better result for you
+        plugins: [
+          ['gifsicle', { interlaced: true }],
+          ['jpegtran', { progressive: true }],
+          ['optipng', { optimizationLevel: 5 }],
+          [
+            'svgo',
+            {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            },
+          ],
+        ],
+      },
     }),
   ],
   devServer: {

@@ -1,9 +1,9 @@
 /* smoothscroll v0.4.4 - 2019 - Dustan Kasten, Jeremias Menichelli - MIT License */
-(function () {
-  'use strict';
+(function() {
 
   // polyfill
   function polyfill() {
+
     // aliases
     var w = window;
     var d = document;
@@ -25,7 +25,7 @@
       scroll: w.scroll || w.scrollTo,
       scrollBy: w.scrollBy,
       elementScroll: Element.prototype.scroll || scrollElement,
-      scrollIntoView: Element.prototype.scrollIntoView
+      scrollIntoView: Element.prototype.scrollIntoView,
     };
 
     // define timing method
@@ -89,12 +89,14 @@
         firstArg.behavior === 'auto' ||
         firstArg.behavior === 'instant'
       ) {
+
         // first argument is not an object/null
         // or behavior is auto, instant or undefined
         return true;
       }
 
       if (typeof firstArg === 'object' && firstArg.behavior === 'smooth') {
+
         // first argument is an object and behavior is smooth
         return false;
       }
@@ -103,7 +105,7 @@
       throw new TypeError(
         'behavior member of ScrollOptions ' +
           firstArg.behavior +
-          ' is not a valid value for enumeration ScrollBehavior.'
+          ' is not a valid value for enumeration ScrollBehavior.',
       );
     }
 
@@ -231,13 +233,14 @@
         startX: startX,
         startY: startY,
         x: x,
-        y: y
+        y: y,
       });
     }
 
     // ORIGINAL METHODS OVERRIDES
     // w.scroll and w.scrollTo
     w.scroll = w.scrollTo = function() {
+
       // avoid action when no arguments are passed
       if (arguments[0] === undefined) {
         return;
@@ -252,12 +255,13 @@
             : typeof arguments[0] !== 'object'
               ? arguments[0]
               : w.scrollX || w.pageXOffset,
+
           // use top prop, second argument if present or fallback to scrollY
           arguments[0].top !== undefined
             ? arguments[0].top
             : arguments[1] !== undefined
               ? arguments[1]
-              : w.scrollY || w.pageYOffset
+              : w.scrollY || w.pageYOffset,
         );
 
         return;
@@ -272,12 +276,13 @@
           : w.scrollX || w.pageXOffset,
         arguments[0].top !== undefined
           ? ~~arguments[0].top
-          : w.scrollY || w.pageYOffset
+          : w.scrollY || w.pageYOffset,
       );
     };
 
     // w.scrollBy
     w.scrollBy = function() {
+
       // avoid action when no arguments are passed
       if (arguments[0] === undefined) {
         return;
@@ -289,10 +294,14 @@
           w,
           arguments[0].left !== undefined
             ? arguments[0].left
-            : typeof arguments[0] !== 'object' ? arguments[0] : 0,
+            : typeof arguments[0] !== 'object'
+              ? arguments[0]
+              : 0,
           arguments[0].top !== undefined
             ? arguments[0].top
-            : arguments[1] !== undefined ? arguments[1] : 0
+            : arguments[1] !== undefined
+              ? arguments[1]
+              : 0,
         );
 
         return;
@@ -303,12 +312,13 @@
         w,
         d.body,
         ~~arguments[0].left + (w.scrollX || w.pageXOffset),
-        ~~arguments[0].top + (w.scrollY || w.pageYOffset)
+        ~~arguments[0].top + (w.scrollY || w.pageYOffset),
       );
     };
 
     // Element.prototype.scroll and Element.prototype.scrollTo
     Element.prototype.scroll = Element.prototype.scrollTo = function() {
+
       // avoid action when no arguments are passed
       if (arguments[0] === undefined) {
         return;
@@ -316,6 +326,7 @@
 
       // avoid smooth behavior if not required
       if (shouldBailOut(arguments[0]) === true) {
+
         // if one number is passed, throw error to match Firefox implementation
         if (typeof arguments[0] === 'number' && arguments[1] === undefined) {
           throw new SyntaxError('Value could not be converted');
@@ -323,14 +334,20 @@
 
         original.elementScroll.call(
           this,
+
           // use left prop, first number argument or fallback to scrollLeft
           arguments[0].left !== undefined
             ? ~~arguments[0].left
-            : typeof arguments[0] !== 'object' ? ~~arguments[0] : this.scrollLeft,
+            : typeof arguments[0] !== 'object'
+              ? ~~arguments[0]
+              : this.scrollLeft,
+
           // use top prop, second argument or fallback to scrollTop
           arguments[0].top !== undefined
             ? ~~arguments[0].top
-            : arguments[1] !== undefined ? ~~arguments[1] : this.scrollTop
+            : arguments[1] !== undefined
+              ? ~~arguments[1]
+              : this.scrollTop,
         );
 
         return;
@@ -344,12 +361,13 @@
         this,
         this,
         typeof left === 'undefined' ? this.scrollLeft : ~~left,
-        typeof top === 'undefined' ? this.scrollTop : ~~top
+        typeof top === 'undefined' ? this.scrollTop : ~~top,
       );
     };
 
     // Element.prototype.scrollBy
     Element.prototype.scrollBy = function() {
+
       // avoid action when no arguments are passed
       if (arguments[0] === undefined) {
         return;
@@ -364,7 +382,7 @@
             : ~~arguments[0] + this.scrollLeft,
           arguments[0].top !== undefined
             ? ~~arguments[0].top + this.scrollTop
-            : ~~arguments[1] + this.scrollTop
+            : ~~arguments[1] + this.scrollTop,
         );
 
         return;
@@ -373,17 +391,18 @@
       this.scroll({
         left: ~~arguments[0].left + this.scrollLeft,
         top: ~~arguments[0].top + this.scrollTop,
-        behavior: arguments[0].behavior
+        behavior: arguments[0].behavior,
       });
     };
 
     // Element.prototype.scrollIntoView
     Element.prototype.scrollIntoView = function() {
+
       // avoid smooth behavior if not required
       if (shouldBailOut(arguments[0]) === true) {
         original.scrollIntoView.call(
           this,
-          arguments[0] === undefined ? true : arguments[0]
+          arguments[0] === undefined ? true : arguments[0],
         );
 
         return;
@@ -395,12 +414,13 @@
       var clientRects = this.getBoundingClientRect();
 
       if (scrollableParent !== d.body) {
+
         // reveal element inside parent
         smoothScroll.call(
           this,
           scrollableParent,
           scrollableParent.scrollLeft + clientRects.left - parentRects.left,
-          scrollableParent.scrollTop + clientRects.top - parentRects.top
+          scrollableParent.scrollTop + clientRects.top - parentRects.top,
         );
 
         // reveal parent in viewport unless is fixed
@@ -408,26 +428,28 @@
           w.scrollBy({
             left: parentRects.left,
             top: parentRects.top,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
         }
       } else {
+
         // reveal element in viewport
         w.scrollBy({
           left: clientRects.left,
           top: clientRects.top,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }
     };
   }
 
   if (typeof exports === 'object' && typeof module !== 'undefined') {
+
     // commonjs
     module.exports = { polyfill: polyfill };
   } else {
+
     // global
     polyfill();
   }
-
-}());
+})();
