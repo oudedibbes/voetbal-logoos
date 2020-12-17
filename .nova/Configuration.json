@@ -1,5 +1,0 @@
-{
-  "apexskier.eslint.config.eslintConfigPath" : ".\/.eslintrc.json",
-  "apexskier.eslint.config.eslintPath" : "\/usr\/local\/bin\/eslint",
-  "apexskier.eslint.config.fixOnSave" : "Enable"
-}
