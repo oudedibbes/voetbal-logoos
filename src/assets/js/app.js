@@ -53,11 +53,11 @@ themeButtons.forEach((button) => {
     const nav_content = document.querySelector('.navigation');
     if (
       typeof body_content !== 'undefined' &&
-      body_content != null &&
+      body_content !== null &&
       typeof header !== 'undefined' &&
-      header != null &&
+      header !== null &&
       typeof nav_content !== 'undefined' &&
-      nav_content != null
+      nav_content !== null
     ) {
       const threshold = nav_content.getBoundingClientRect();
 
