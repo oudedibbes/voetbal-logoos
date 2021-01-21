@@ -1,34 +1,32 @@
-"use strict";
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+function _instanceof(left, right) { if (right != null && typeof Symbol !== 'undefined' && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
-/*!
+/* !
   * Stickyfill – `position: sticky` polyfill
   * v. 2.1.0 | https://github.com/wilddeer/stickyfill
   * MIT License
   */
-;
 
-(function (window, document) {
-  'use strict';
+(function(window, document) {
+
   /*
    * 1. Check if the browser supports `position: sticky` natively or is too old to run the polyfill.
    *    If either of these is the case set `seppuku` flag. It will be checked later to disable key features
    *    of the polyfill, but the API will remain functional to avoid breaking things.
    */
 
-  var _createClass = function () {
+  var _createClass = function() {
     function defineProperties(target, props) {
       for (var i = 0; i < props.length; i++) {
         var descriptor = props[i];
         descriptor.enumerable = descriptor.enumerable || false;
         descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
+        if ('value' in descriptor) descriptor.writable = true;
         Object.defineProperty(target, descriptor.key, descriptor);
       }
     }
 
-    return function (Constructor, protoProps, staticProps) {
+    return function(Constructor, protoProps, staticProps) {
       if (protoProps) defineProperties(Constructor.prototype, protoProps);
       if (staticProps) defineProperties(Constructor, staticProps);
       return Constructor;
@@ -37,7 +35,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
   function _classCallCheck(instance, Constructor) {
     if (!_instanceof(instance, Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+      throw new TypeError('Cannot call a class as a function');
     }
   }
 
@@ -46,17 +44,18 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
   if (!isWindowDefined || !window.getComputedStyle) seppuku = true; // Dont’t get in a way if the browser supports `position: sticky` natively.
   else {
-      (function () {
-        var testNode = document.createElement('div');
-        if (['', '-webkit-', '-moz-', '-ms-'].some(function (prefix) {
-          try {
-            testNode.style.position = prefix + 'sticky';
-          } catch (e) {}
+    (function() {
+      var testNode = document.createElement('div');
+      if (['', '-webkit-', '-moz-', '-ms-'].some(function(prefix) {
+        try {
+          testNode.style.position = prefix + 'sticky';
+        } catch (e) {}
 
-          return testNode.style.position != '';
-        })) seppuku = true;
-      })();
-    }
+        return testNode.style.position != '';
+      })) seppuku = true;
+    })();
+  }
+
   /*
    * 2. “Global” vars used across the polyfill
    */
@@ -67,10 +66,11 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
   var scroll = {
     top: null,
-    left: null
+    left: null,
   }; // Array of created Sticky instances
 
   var stickies = [];
+
   /*
    * 3. Utility functions
    */
@@ -97,17 +97,17 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
     return docOffsetTop;
   }
+
   /*
    * 4. Sticky class
    */
 
-
-  var Sticky = function () {
+  var Sticky = function() {
     function Sticky(node) {
       _classCallCheck(this, Sticky);
 
       if (!_instanceof(node, HTMLElement)) throw new Error('First argument must be HTMLElement');
-      if (stickies.some(function (sticky) {
+      if (stickies.some(function(sticky) {
         return sticky._node === node;
       })) throw new Error('Stickyfill is already applied to this node');
       this._node = node;
@@ -123,6 +123,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
         if (seppuku || this._removed) return;
         if (this._active) this._deactivate();
         var node = this._node;
+
         /*
          * 1. Save node computed props
          */
@@ -136,14 +137,16 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
           marginBottom: nodeComputedStyle.marginBottom,
           marginLeft: nodeComputedStyle.marginLeft,
           marginRight: nodeComputedStyle.marginRight,
-          cssFloat: nodeComputedStyle.cssFloat
+          cssFloat: nodeComputedStyle.cssFloat,
         };
+
         /*
          * 2. Check if the node can be activated
          */
 
         if (isNaN(parseFloat(nodeComputedProps.top)) || nodeComputedProps.display == 'table-cell' || nodeComputedProps.display == 'none') return;
         this._active = true;
+
         /*
          * 3. Check if the current node position is `sticky`. If it is, it means that the browser supports sticky positioning,
          *    but the polyfill was force-enabled. We set the node’s position to `static` before continuing, so that the node
@@ -152,6 +155,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
         var originalPosition = node.style.position;
         if (nodeComputedStyle.position == 'sticky' || nodeComputedStyle.position == '-webkit-sticky') node.style.position = 'static';
+
         /*
          * 4. Get necessary node parameters
          */
@@ -164,18 +168,18 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
         this._parent = {
           node: parentNode,
           styles: {
-            position: parentNode.style.position
+            position: parentNode.style.position,
           },
-          offsetHeight: parentNode.offsetHeight
+          offsetHeight: parentNode.offsetHeight,
         };
         this._offsetToWindow = {
           left: nodeWinOffset.left,
-          right: document.documentElement.clientWidth - nodeWinOffset.right
+          right: document.documentElement.clientWidth - nodeWinOffset.right,
         };
         this._offsetToParent = {
           top: nodeWinOffset.top - parentWinOffset.top - parseNumeric(parentComputedStyle.borderTopWidth),
           left: nodeWinOffset.left - parentWinOffset.left - parseNumeric(parentComputedStyle.borderLeftWidth),
-          right: -nodeWinOffset.right + parentWinOffset.right - parseNumeric(parentComputedStyle.borderRightWidth)
+          right: -nodeWinOffset.right + parentWinOffset.right - parseNumeric(parentComputedStyle.borderRightWidth),
         };
         this._styles = {
           position: originalPosition,
@@ -186,13 +190,14 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
           width: node.style.width,
           marginTop: node.style.marginTop,
           marginLeft: node.style.marginLeft,
-          marginRight: node.style.marginRight
+          marginRight: node.style.marginRight,
         };
         var nodeTopValue = parseNumeric(nodeComputedProps.top);
         this._limits = {
           start: nodeWinOffset.top + window.pageYOffset - nodeTopValue,
-          end: parentWinOffset.top + window.pageYOffset + parentNode.offsetHeight - parseNumeric(parentComputedStyle.borderBottomWidth) - node.offsetHeight - nodeTopValue - parseNumeric(nodeComputedProps.marginBottom)
+          end: parentWinOffset.top + window.pageYOffset + parentNode.offsetHeight - parseNumeric(parentComputedStyle.borderBottomWidth) - node.offsetHeight - nodeTopValue - parseNumeric(nodeComputedProps.marginBottom),
         };
+
         /*
          * 5. Ensure that the node will be positioned relatively to the parent node
          */
@@ -202,17 +207,17 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
         if (parentPosition != 'absolute' && parentPosition != 'relative') {
           parentNode.style.position = 'relative';
         }
+
         /*
          * 6. Recalc node position.
          *    It’s important to do this before clone injection to avoid scrolling bug in Chrome.
          */
 
-
         this._recalcPosition();
+
         /*
          * 7. Create a clone
          */
-
 
         var clone = this._clone = {};
         clone.node = document.createElement('div'); // Apply styles to the clone
@@ -229,11 +234,11 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
           border: 0,
           borderSpacing: 0,
           fontSize: '1em',
-          position: 'static'
+          position: 'static',
         });
         referenceNode.insertBefore(clone.node, node);
         clone.docOffsetTop = getDocOffsetTop(clone.node);
-      }
+      },
     }, {
       key: '_recalcPosition',
       value: function _recalcPosition() {
@@ -252,7 +257,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
               width: 'auto',
               marginLeft: 0,
               marginRight: 0,
-              marginTop: 0
+              marginTop: 0,
             });
             break;
 
@@ -266,7 +271,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
               width: 'auto',
               marginLeft: 0,
               marginRight: 0,
-              marginTop: 0
+              marginTop: 0,
             });
             break;
 
@@ -279,19 +284,19 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
               bottom: 0,
               width: 'auto',
               marginLeft: 0,
-              marginRight: 0
+              marginRight: 0,
             });
             break;
         }
 
         this._stickyMode = stickyMode;
-      }
+      },
     }, {
       key: '_fastCheck',
       value: function _fastCheck() {
         if (!this._active || this._removed) return;
         if (Math.abs(getDocOffsetTop(this._clone.node) - this._clone.docOffsetTop) > 1 || Math.abs(this._parent.node.offsetHeight - this._parent.offsetHeight) > 1) this.refresh();
-      }
+      },
     }, {
       key: '_deactivate',
       value: function _deactivate() {
@@ -306,7 +311,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
         delete this._styles; // Check whether element’s parent node is used by other stickies.
         // If not, restore parent node’s styles.
 
-        if (!stickies.some(function (sticky) {
+        if (!stickies.some(function(sticky) {
           return sticky !== _this && sticky._parent && sticky._parent.node === _this._parent.node;
         })) {
           extend(this._parent.node.style, this._parent.styles);
@@ -318,7 +323,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
         delete this._offsetToWindow;
         delete this._offsetToParent;
         delete this._limits;
-      }
+      },
     }, {
       key: 'remove',
       value: function remove() {
@@ -326,22 +331,22 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
         this._deactivate();
 
-        stickies.some(function (sticky, index) {
+        stickies.some(function(sticky, index) {
           if (sticky._node === _this2._node) {
             stickies.splice(index, 1);
             return true;
           }
         });
         this._removed = true;
-      }
+      },
     }]);
 
     return Sticky;
   }();
+
   /*
    * 5. Stickyfill API
    */
-
 
   var Stickyfill = {
     stickies: stickies,
@@ -352,23 +357,24 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
       this.refreshAll();
     },
     addOne: function addOne(node) {
+
       // Check whether it’s a node
       if (!_instanceof(node, HTMLElement)) {
+
         // Maybe it’s a node list of some sort?
         // Take first node from the list then
-        if (node.length && node[0]) node = node[0];else return;
+        if (node.length && node[0]) node = node[0]; else return;
       } // Check if Stickyfill is already applied to the node
       // and return existing sticky
-
 
       for (var i = 0; i < stickies.length; i++) {
         if (stickies[i]._node === node) return stickies[i];
       } // Create and return new sticky
 
-
       return new Sticky(node);
     },
     add: function add(nodeList) {
+
       // If it’s a node make an array of one node
       if (_instanceof(nodeList, HTMLElement)) nodeList = [nodeList]; // Check if the argument is an iterable of some sort
 
@@ -386,8 +392,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
         } // If Stickyfill is already applied to the node
         // add existing sticky
 
-
-        if (stickies.some(function (sticky) {
+        if (stickies.some(function(sticky) {
           if (sticky._node === node) {
             addedStickies.push(sticky);
             return true;
@@ -406,20 +411,21 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
       return addedStickies;
     },
     refreshAll: function refreshAll() {
-      stickies.forEach(function (sticky) {
+      stickies.forEach(function(sticky) {
         return sticky.refresh();
       });
     },
     removeOne: function removeOne(node) {
+
       // Check whether it’s a node
       if (!_instanceof(node, HTMLElement)) {
+
         // Maybe it’s a node list of some sort?
         // Take first node from the list then
-        if (node.length && node[0]) node = node[0];else return;
+        if (node.length && node[0]) node = node[0]; else return;
       } // Remove the stickies bound to the nodes in the list
 
-
-      stickies.some(function (sticky) {
+      stickies.some(function(sticky) {
         if (sticky._node === node) {
           sticky.remove();
           return true;
@@ -427,6 +433,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
       });
     },
     remove: function remove(nodeList) {
+
       // If it’s a node make an array of one node
       if (_instanceof(nodeList, HTMLElement)) nodeList = [nodeList]; // Check if the argument is an iterable of some sort
 
@@ -434,7 +441,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
       var _loop2 = function _loop2(i) {
         var node = nodeList[i];
-        stickies.some(function (sticky) {
+        stickies.some(function(sticky) {
           if (sticky._node === node) {
             sticky.remove();
             return true;
@@ -450,8 +457,9 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
       while (stickies.length) {
         stickies[0].remove();
       }
-    }
+    },
   };
+
   /*
    * 6. Setup events (unless the polyfill was disabled)
    */
@@ -472,7 +480,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
         scroll.top = window.pageYOffset;
         scroll.left = window.pageXOffset; // recalc position for all stickies
 
-        stickies.forEach(function (sticky) {
+        stickies.forEach(function(sticky) {
           return sticky._recalcPosition();
         });
       }
@@ -482,13 +490,13 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
     window.addEventListener('scroll', checkScroll); // Watch for window resizes and device orientation changes and trigger refresh
 
     window.addEventListener('resize', Stickyfill.refreshAll);
-    window.addEventListener('orientationchange', Stickyfill.refreshAll); //Fast dirty check for layout changes every 500ms
+    window.addEventListener('orientationchange', Stickyfill.refreshAll); // Fast dirty check for layout changes every 500ms
 
     var fastCheckTimer = void 0;
 
     function startFastCheckTimer() {
-      fastCheckTimer = setInterval(function () {
-        stickies.forEach(function (sticky) {
+      fastCheckTimer = setInterval(function() {
+        stickies.forEach(function(sticky) {
           return sticky._fastCheck();
         });
       }, 500);
@@ -511,7 +519,7 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
 
     if (visibilityChangeEventName) {
       if (!document[docHiddenKey]) startFastCheckTimer();
-      document.addEventListener(visibilityChangeEventName, function () {
+      document.addEventListener(visibilityChangeEventName, function() {
         if (document[docHiddenKey]) {
           stopFastCheckTimer();
         } else {
@@ -522,18 +530,15 @@ function _instanceof(left, right) { if (right != null && typeof Symbol !== "unde
   }
 
   if (!seppuku) init();
+
   /*
    * 7. Expose Stickyfill
    */
 
-  if (typeof module != 'undefined' && module.exports) {
+  if (typeof module !== 'undefined' && module.exports) {
     module.exports = Stickyfill;
   } else if (isWindowDefined) {
     window.Stickyfill = Stickyfill;
   }
-
-
-
-
 
 })(window, document);
